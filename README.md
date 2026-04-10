@@ -9,27 +9,29 @@ This capstone project transforms the raw chocolate sales data into a high-perfor
 
 ```bash
 ChocoDelight-Data-Platform/
-├── README.md
-├── requirements.txt
-├── .env
-├── .gitignore
+├── README.md                          # Technical README (mandatory for submission)
+├── requirements.txt                   # Python 
+├── .env                               # (use env vars in production)
+├── .gitignore                         # Standard Python + data gitignore
 ├── config/
-│   └── db_config.py
+│   └── db_config.py                   # Database connection settings 
 ├── data/
-│   └── raw/                 # Place the 5 CSV files here
+│   └── raw/                           # Place the 5 CSV files here (add to .gitignore if large)
 ├── sql/
-│   ├── 01_create_schema.sql
-│   ├── 02_constraints_indexes.sql
-│   ├── 03_data_cleaning.sql
-│   ├── 04_views_analytics.sql
-│   ├── 05_segmentation.sql
-│   └── schema_final.sql
+│   ├── 01_create_schema.sql           # Dimension + Fact tables (2NF)
+│   ├── 02_constraints_indexes.sql     # PK, FK, UNIQUE, CHECK, indexes
+│   ├── 03_data_cleaning.sql           # Standardize, handle NULLs/duplicates (optional helper)
+│   ├── 04_views_analytics.sql         # Revenue by product, region, monthly trends
+│   ├── 05_segmentation.sql            # Revenue buckets, time categories, outlier handling
+│   └── schema_final.sql               # FINAL consolidated script
 ├── python/
-│   └── etl_pipeline.py
-├── notebooks/
-│   └── 01_eda_chocolate_sales.ipynb
+│   └── etl_pipeline.py                # COMPLETE Python ETL script
+├── notebooks/                         # Optional but recommended
+│   └── 01_eda_chocolate_sales.ipynb   # Exploratory Data Analysis (for reference)
 └── docs/
-    └── data_dictionary.md
+    └── data_dictionary.md             # Optional but excellent for professionalism
+
+```
 
 ## Tasks Completed
 
@@ -59,16 +61,54 @@ Created the following **SQL Views**:
 - Time-based categories (`season`, `is_weekend`, `fiscal_quarter`)
 - Outlier detection and flagging on revenue and quantity
 
-## How to Run the Project
+### Technologies Used
+- Database: PostgreSQL
+- Language: Python 3
+- Libraries: pandas, SQLAlchemy, psycopg2-binary, python-dotenv
+- Design: Star Schema (4 Dimension Tables + 1 Fact Table)
 
-1. **Database Setup**
-   ```bash
-   psql -U postgres -d chocodelight -f sql/schema_final.sql
-   ```
-
-2. **Database Setup**
+## How to Run
+### 1. Clone the repository
+```bash 
+   git clone https://github.com/yourusername/ChocoDelight-Data-Platform.git
+   cd ChocoDelight-Data-Platform
+```
+### 2. Install dependencies
 ```bash
-    pip install -r requirements.txt
-    python python/etl_pipeline.py
+pip install -r requirements.txt
+```
+### 3. Configure database credentials
+Create a `.env` file in the root with:
+```bash
+envDB_HOST=localhost
+DB_PORT=5432
+DB_NAME=chocodelight
+DB_USER=postgres
+DB_PASSWORD=your_actual_password
+```
+### 4. Create the database
+```bash
+SQLCREATE DATABASE chocodelight;
+```
+### 5. Run the schema
+```bash
+psql -U postgres -d chocodelight -f sql/schema_final.sql
+```
+### 6. Run the ETL pipeline
+```bash
+python python/etl_pipeline.py
+```
+- Choose option 1 and follow the instructions to place the CSV files in data/raw/
+
+### 7. Explore insights
+```bash
+SQLSELECT * FROM vw_revenue_by_product LIMIT 10;
+SELECT * FROM vw_revenue_by_store ORDER BY total_revenue DESC;
+SELECT * FROM vw_monthly_trends;
 ```
 
+## Author
+Samuel Ede | 
+Data Engineering Capstone Project II
+## License
+This project is for academic and portfolio purposes only.
