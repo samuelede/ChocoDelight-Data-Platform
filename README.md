@@ -64,7 +64,7 @@ Created the following **SQL Views**:
 ### Technologies Used
 - Database: PostgreSQL
 - Language: Python 3
-- Libraries: pandas, SQLAlchemy, psycopg2-binary, python-dotenv
+- Libraries: pandas, SQLAlchemy, psycopg2-binary, python-dotenv, kaggle, matplotlib, seaborn
 - Design: Star Schema (4 Dimension Tables + 1 Fact Table)
 
 ## How to Run
@@ -79,16 +79,16 @@ pip install -r requirements.txt
 ```
 ### 3. Configure database credentials
 Create a `.env` file in the root with:
-```bash
-envDB_HOST=localhost
+```env
+DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=chocodelight
 DB_USER=postgres
 DB_PASSWORD=your_actual_password
 ```
 ### 4. Create the database
-```bash
-SQLCREATE DATABASE chocodelight;
+```sql
+CREATE DATABASE chocodelight;
 ```
 ### 5. Run the schema
 ```bash
@@ -101,8 +101,8 @@ python python/etl_pipeline.py
 - Choose option 1 and follow the instructions to place the CSV files in data/raw/
 
 ### 7. Explore insights
-```bash
-SQLSELECT * FROM vw_revenue_by_product LIMIT 10;
+```sql
+SELECT * FROM vw_revenue_by_product LIMIT 10;
 SELECT * FROM vw_revenue_by_store ORDER BY total_revenue DESC;
 SELECT * FROM vw_monthly_trends;
 ```
