@@ -99,6 +99,7 @@ psql -U postgres -d chocodelight -f sql/schema_final.sql
 python python/etl_pipeline.py
 ```
 - Choose option 1 and follow the instructions to place the CSV files in data/raw/
+- Choose option 2 if you already have the downloaded CSV files in data/raw/  
 
 ### 7. Explore insights
 ```sql
