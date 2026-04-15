@@ -80,11 +80,7 @@ pip install -r requirements.txt
 ### 3. Configure database credentials
 Create a `.env` file in the root folder with the following commands:
 ```cmd
-echo DB_HOST=localhost > .env
-echo DB_PORT=5432 > .env
-echo DB_NAME=chocodelight > .env
-echo DB_USER=postgres > .env
-echo DB_PASSWORD=your_actual_password > .env
+"DB_HOST=localhost`nDB_PORT=5432`nDB_NAME=chocodelight`nDB_USER=postgres`nDB_PASSWORD=your_actual_password" | Out-File -Encoding ascii .env
 ```
 ### 4. Create the database
 ```sql
