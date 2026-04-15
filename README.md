@@ -78,13 +78,13 @@ Created the following **SQL Views**:
 pip install -r requirements.txt
 ```
 ### 3. Configure database credentials
-Create a `.env` file in the root with:
-```env
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=chocodelight
-DB_USER=postgres
-DB_PASSWORD=your_actual_password
+Create a `.env` file in the root folder with the following commands:
+```cmd
+echo DB_HOST=localhost > .env
+echo DB_PORT=5432 > .env
+echo DB_NAME=chocodelight > .env
+echo DB_USER=postgres > .env
+echo DB_PASSWORD=your_actual_password > .env
 ```
 ### 4. Create the database
 ```sql
